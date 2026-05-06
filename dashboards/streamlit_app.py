@@ -33,58 +33,201 @@ def inject_css():
         """
         <style>
         .stApp {
-            background: linear-gradient(135deg, #07111F 0%, #0B1220 50%, #111827 100%);
-            color: #F9FAFB;
+            background:
+                radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.10), transparent 28%),
+                linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 55%, #F0FDF4 100%);
+            color: #111827;
+        }
+
+        .block-container {
+            padding-top: 2rem;
+            padding-bottom: 3rem;
         }
 
         [data-testid="stSidebar"] {
-            background-color: #0B1220;
-            border-right: 1px solid #1F2937;
+            background: #FFFFFF;
+            border-right: 1px solid #E5E7EB;
+            box-shadow: 8px 0 25px rgba(17, 24, 39, 0.04);
+        }
+
+        [data-testid="stSidebar"] * {
+            color: #111827 !important;
+        }
+
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3 {
+            color: #6D28D9 !important;
+            font-weight: 900 !important;
+        }
+
+        [data-testid="stSidebar"] label {
+            color: #374151 !important;
+            font-weight: 700 !important;
         }
 
         .main-title {
             font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: #F9FAFB;
+            font-weight: 950;
+            letter-spacing: -1.2px;
+            color: #111827;
             margin-bottom: 0rem;
         }
 
+        .main-title::after {
+            content: "";
+            display: block;
+            width: 140px;
+            height: 5px;
+            background: linear-gradient(90deg, #6D28D9, #22C55E);
+            margin-top: 0.55rem;
+            border-radius: 999px;
+        }
+
         .subtitle {
-            color: #9CA3AF;
-            font-size: 1.05rem;
+            color: #4B5563;
+            font-size: 1.08rem;
+            margin-top: 0.8rem;
             margin-bottom: 1.5rem;
         }
 
         .metric-card {
-            padding: 1.2rem;
-            border-radius: 18px;
-            background: rgba(17, 24, 39, 0.92);
-            border: 1px solid #1F2937;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+            padding: 1.25rem;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid #E5E7EB;
+            box-shadow:
+                0 18px 45px rgba(17, 24, 39, 0.08),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
             margin-bottom: 1rem;
         }
 
+        .metric-card:hover {
+            border-color: rgba(109, 40, 217, 0.35);
+            box-shadow:
+                0 20px 50px rgba(109, 40, 217, 0.12),
+                0 10px 35px rgba(34, 197, 94, 0.08);
+            transition: 0.25s ease;
+        }
+
         .big-number {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #38BDF8;
+            font-size: 2.25rem;
+            font-weight: 950;
+            color: #6D28D9;
             line-height: 1;
         }
 
         .metric-label {
-            color: #9CA3AF;
+            color: #6B7280;
             font-size: 0.9rem;
-            margin-top: 0.4rem;
+            margin-top: 0.45rem;
+            text-transform: uppercase;
+            letter-spacing: 0.45px;
+            font-weight: 700;
         }
 
         .insight-box {
-            padding: 1.2rem;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(56,189,248,0.12), rgba(34,197,94,0.08));
-            border: 1px solid rgba(56,189,248,0.35);
+            padding: 1.35rem;
+            border-radius: 24px;
+            background:
+                linear-gradient(135deg, rgba(109, 40, 217, 0.08), rgba(34, 197, 94, 0.10)),
+                #FFFFFF;
+            border: 1px solid rgba(109, 40, 217, 0.18);
+            box-shadow: 0 18px 45px rgba(17, 24, 39, 0.07);
             margin-top: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .insight-box h3 {
+            color: #6D28D9;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-box p {
+            color: #374151;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        [data-testid="stMetric"] {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 12px 35px rgba(17, 24, 39, 0.06);
+        }
+
+        [data-testid="stMetricLabel"] {
+            color: #6B7280 !important;
+            font-weight: 700;
+        }
+
+        [data-testid="stMetricValue"] {
+            color: #6D28D9 !important;
+            font-weight: 950;
+        }
+
+        .stButton > button {
+            background: linear-gradient(90deg, #6D28D9, #22C55E) !important;
+            color: #FFFFFF !important;
+            border: none !important;
+            border-radius: 14px !important;
+            font-weight: 800 !important;
+            padding: 0.55rem 1rem !important;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.18);
+        }
+
+        .stButton > button:hover {
+            background: linear-gradient(90deg, #5B21B6, #16A34A) !important;
+            color: #FFFFFF !important;
+            transform: translateY(-1px);
+            transition: 0.2s ease;
+        }
+
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.4rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            background: #FFFFFF;
+            color: #374151;
+            border-radius: 14px 14px 0 0;
+            border: 1px solid #E5E7EB;
+            padding: 0.65rem 1rem;
+            font-weight: 800;
+        }
+
+        .stTabs [aria-selected="true"] {
+            background: linear-gradient(90deg, #6D28D9, #22C55E) !important;
+            color: #FFFFFF !important;
+        }
+
+        [data-testid="stDataFrame"] {
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(17, 24, 39, 0.05);
+        }
+
+        .stTextInput input {
+            background: #FFFFFF !important;
+            color: #111827 !important;
+            border: 1px solid #D1D5DB !important;
+            border-radius: 12px !important;
+        }
+
+        .stSelectbox div {
+            color: #111827 !important;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #6D28D9, #22C55E, transparent);
+            margin: 1.5rem 0;
         }
         </style>
         """,
@@ -94,15 +237,37 @@ def inject_css():
 
 def apply_chart_style(fig):
     fig.update_layout(
-        paper_bgcolor="#07111F",
-        plot_bgcolor="#111827",
-        font=dict(color="#F9FAFB"),
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#FFFFFF",
+        font=dict(color="#111827"),
         margin=dict(l=20, r=20, t=55, b=20),
-        legend=dict(bgcolor="rgba(0,0,0,0)"),
+        legend=dict(
+            bgcolor="rgba(255,255,255,0)",
+            font=dict(color="#111827"),
+        ),
+        colorway=[
+            "#6D28D9",
+            "#22C55E",
+            "#A78BFA",
+            "#86EFAC",
+            "#4C1D95",
+            "#15803D",
+        ],
     )
 
-    fig.update_xaxes(gridcolor="#1F2937")
-    fig.update_yaxes(gridcolor="#1F2937")
+    fig.update_xaxes(
+        gridcolor="#E5E7EB",
+        zerolinecolor="#E5E7EB",
+        linecolor="#D1D5DB",
+        color="#374151",
+    )
+
+    fig.update_yaxes(
+        gridcolor="#E5E7EB",
+        zerolinecolor="#E5E7EB",
+        linecolor="#D1D5DB",
+        color="#374151",
+    )
 
     return fig
 
@@ -278,6 +443,7 @@ with tab1:
             y="count",
             title="Job Demand by Role Category",
             labels={"category": "Role Category", "count": "Job Count"},
+            color_discrete_sequence=["#6D28D9"],
         )
 
         fig.update_layout(xaxis_tickangle=-35)
@@ -291,6 +457,11 @@ with tab1:
             names="work_type",
             values="count",
             title="Remote vs Hybrid vs Onsite",
+            color_discrete_sequence=[
+                "#6D28D9",
+                "#22C55E",
+                "#A78BFA",
+            ],
         )
 
         st.plotly_chart(apply_chart_style(fig), use_container_width=True)
@@ -303,6 +474,7 @@ with tab1:
         y="count",
         title="Job Demand by Location",
         labels={"location": "Location", "count": "Job Count"},
+        color_discrete_sequence=["#22C55E"],
     )
 
     fig.update_layout(xaxis_tickangle=-35)
@@ -318,6 +490,12 @@ with tab2:
         orientation="h",
         title="Top In-Demand Skills",
         labels={"count": "Demand Count", "skill": "Skill"},
+        color="count",
+        color_continuous_scale=[
+            [0, "#DCFCE7"],
+            [0.5, "#A78BFA"],
+            [1, "#6D28D9"],
+        ],
     )
 
     fig.update_layout(yaxis=dict(categoryorder="total ascending"))
@@ -335,6 +513,12 @@ with tab3:
         y="avg_salary",
         title="Average Salary by Role Category",
         labels={"category": "Role Category", "avg_salary": "Average Salary GBP"},
+        color="avg_salary",
+        color_continuous_scale=[
+            [0, "#DCFCE7"],
+            [0.5, "#86EFAC"],
+            [1, "#6D28D9"],
+        ],
     )
 
     fig.update_layout(xaxis_tickangle=-35)
