@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: skilllens_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: skilllens_db
+      POSTGRES_USER: skilllens_user
+      POSTGRES_PASSWORD: skilllens_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - skilllens_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  skilllens_postgres_data:
