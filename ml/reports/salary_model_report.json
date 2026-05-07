@@ -4,8 +4,8 @@
   "rows": 350,
   "train_rows": 280,
   "test_rows": 70,
-  "mae": 1685.93,
-  "r2_score": 0.9723,
+  "mae": 2145.97,
+  "r2_score": 0.9584,
   "features": [
     "category",
     "experience_level",
@@ -13,5 +13,5 @@
     "location",
     "skill_count"
   ],
-  "model_path": "C:\\MyDrive\\skilllens-ai\\ml\\models\\salary_model.joblib"
+  "model_path": "/app/ml/models/salary_model.joblib"
 }

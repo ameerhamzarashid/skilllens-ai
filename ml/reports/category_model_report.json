@@ -62,5 +62,5 @@
       "support": 70.0
     }
   },
-  "model_path": "C:\\MyDrive\\skilllens-ai\\ml\\models\\category_model.joblib"
+  "model_path": "/app/ml/models/category_model.joblib"
 }
