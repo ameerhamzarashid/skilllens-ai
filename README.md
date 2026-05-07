@@ -104,3 +104,75 @@ Generate and ingest data:
 ```bash
 python -m data_platform.generate_sample_jobs
 python -m data_platform.ingest_jobs
+
+---
+
+## Stage 4 Features
+
+Stage 4 adds the full-stack frontend.
+
+### Added Capabilities
+
+- Next.js frontend
+- TypeScript interface
+- Tailwind CSS styling
+- Recharts visualisations
+- FastAPI integration
+- Market intelligence web page
+- CV job matcher web page
+- Salary predictor web page
+- Skill gap roadmap web page
+- Reusable frontend components
+
+### Stage 4 Frontend Structure
+
+```text
+frontend/
+├── app/
+│   ├── cv-match/
+│   ├── market/
+│   ├── salary/
+│   ├── skill-gap/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+├── lib/
+├── package.json
+└── README.md
+
+## Stage 4 Features
+
+Stage 4 adds the full-stack frontend.
+
+### Added Capabilities
+
+- Next.js frontend
+- TypeScript interface
+- Tailwind CSS styling
+- Recharts visualisations
+- FastAPI integration
+- Market intelligence web page
+- CV job matcher web page
+- Salary predictor web page
+- Skill gap roadmap web page
+- Reusable frontend components
+
+### Stage 4 Frontend Structure
+
+```text
+frontend/
+├── app/
+│   ├── cv-match/
+│   ├── market/
+│   ├── salary/
+│   ├── skill-gap/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+├── lib/
+├── package.json
+└── README.md

@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #111827;
+  --purple: #6d28d9;
+  --green: #22c55e;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(109, 40, 217, 0.08), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.10), transparent 32%),
+    linear-gradient(135deg, #f8fafc 0%, #ffffff 55%, #f0fdf4 100%);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.page-shell {
+  min-height: 100vh;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #6d28d9, #22c55e);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.card-shadow {
+  box-shadow: 0 18px 45px rgba(17, 24, 39, 0.08);
+}
+
+.soft-border {
+  border: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.input-style {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  outline: none;
+  color: #111827;
+}
+
+.input-style:focus {
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.12);
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 16px;
+  padding: 0.85rem 1.2rem;
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(90deg, #6d28d9, #22c55e);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(109, 40, 217, 0.18);
+}
+
+.btn-secondary {
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  padding: 0.85rem 1.2rem;
+  color: #111827;
+  font-weight: 800;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  color: #374151;
+  font-size: 0.85rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+  color: #111827;
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: top;
+}
