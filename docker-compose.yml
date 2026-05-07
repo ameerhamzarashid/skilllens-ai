@@ -13,6 +13,51 @@ services:
       - "5432:5432"
     volumes:
       - skilllens_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skilllens_user -d skilllens_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: skilllens_backend
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      APP_NAME: SkillLens AI
+      APP_ENV: docker
+      DATABASE_URL: postgresql+psycopg2://skilllens_user:skilllens_password@postgres:5432/skilllens_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./ml:/app/ml
+    command: >
+      sh -c "
+      python -m data_platform.generate_sample_jobs &&
+      python -m data_platform.ingest_jobs &&
+      python -m skilllens.ml.train_salary_model &&
+      python -m skilllens.ml.train_category_model &&
+      uvicorn backend.main:app --host 0.0.0.0 --port 8000
+      "
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    container_name: skilllens_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
 
 volumes:
   skilllens_postgres_data:

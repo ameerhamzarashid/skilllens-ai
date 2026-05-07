@@ -1,0 +1,56 @@
+{
+  "pipeline": "SkillLens AI Stage 5 pipeline",
+  "started_at": "2026-05-07T13:25:20.258579",
+  "finished_at": "2026-05-07T13:25:44.640021",
+  "overall_passed": true,
+  "steps": [
+    {
+      "name": "Generate sample jobs",
+      "command": "C:\\MyDrive\\skilllens-ai\\.venv\\Scripts\\python.exe -m data_platform.generate_sample_jobs",
+      "passed": true,
+      "return_code": 0,
+      "stdout_tail": "Sample job dataset created at: C:\\MyDrive\\skilllens-ai\\data\\raw\\sample_jobs.csv\nRows: 350\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "Ingest jobs",
+      "command": "C:\\MyDrive\\skilllens-ai\\.venv\\Scripts\\python.exe -m data_platform.ingest_jobs",
+      "passed": true,
+      "return_code": 0,
+      "stdout_tail": "SkillLens AI Stage 1 ingestion complete.\nRows in raw file: 350\nRows inserted: 0\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "Run data quality checks",
+      "command": "C:\\MyDrive\\skilllens-ai\\.venv\\Scripts\\python.exe -m data_platform.data_quality",
+      "passed": true,
+      "return_code": 0,
+      "stdout_tail": "ns AI data quality report\n{\n  \"overall_passed\": true,\n  \"row_count\": 350,\n  \"checks\": [\n    {\n      \"check\": \"required_columns\",\n      \"passed\": true,\n      \"missing_columns\": []\n    },\n    {\n      \"check\": \"no_empty_required_values\",\n      \"passed\": true,\n      \"null_counts\": {\n        \"job_id\": 0,\n        \"title\": 0,\n        \"company\": 0,\n        \"location\": 0,\n        \"country\": 0,\n        \"category\": 0,\n        \"experience_level\": 0,\n        \"work_type\": 0,\n        \"salary_min\": 0,\n        \"salary_max\": 0,\n        \"description\": 0,\n        \"posted_date\": 0\n      },\n      \"failed_columns\": []\n    },\n    {\n      \"check\": \"unique_job_ids\",\n      \"passed\": true,\n      \"duplicate_count\": 0\n    },\n    {\n      \"check\": \"salary_validity\",\n      \"passed\": true,\n      \"invalid_min_count\": 0,\n      \"invalid_max_count\": 0,\n      \"min_greater_than_max_count\": 0\n    },\n    {\n      \"check\": \"extracted_skills\",\n      \"passed\": true,\n      \"empty_skill_rows\": 0,\n      \"total_rows\": 350\n    }\n  ]\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "Train salary model",
+      "command": "C:\\MyDrive\\skilllens-ai\\.venv\\Scripts\\python.exe -m skilllens.ml.train_salary_model",
+      "passed": true,
+      "return_code": 0,
+      "stdout_tail": "Salary model training complete.\n{'model_name': 'RandomForestRegressor', 'target': 'salary_midpoint', 'rows': 350, 'train_rows': 280, 'test_rows': 70, 'mae': 1685.93, 'r2_score': 0.9723, 'features': ['category', 'experience_level', 'work_type', 'location', 'skill_count'], 'model_path': 'C:\\\\MyDrive\\\\skilllens-ai\\\\ml\\\\models\\\\salary_model.joblib'}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "Train category model",
+      "command": "C:\\MyDrive\\skilllens-ai\\.venv\\Scripts\\python.exe -m skilllens.ml.train_category_model",
+      "passed": true,
+      "return_code": 0,
+      "stdout_tail": "ssion', 'target': 'job_category', 'rows': 350, 'train_rows': 280, 'test_rows': 70, 'accuracy': 1.0, 'classification_report': {'AI Engineer': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 9.0}, 'Analytics Engineer': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 12.0}, 'BI Analyst': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 9.0}, 'Data Analyst': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 9.0}, 'Data Engineer': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 10.0}, 'Data Scientist': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 11.0}, 'Machine Learning Engineer': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 10.0}, 'accuracy': 1.0, 'macro avg': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 70.0}, 'weighted avg': {'precision': 1.0, 'recall': 1.0, 'f1-score': 1.0, 'support': 70.0}}, 'model_path': 'C:\\\\MyDrive\\\\skilllens-ai\\\\ml\\\\models\\\\category_model.joblib'}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "Run tests",
+      "command": "C:\\MyDrive\\skilllens-ai\\.venv\\Scripts\\python.exe -m pytest",
+      "passed": true,
+      "return_code": 0,
+      "stdout_tail": "============================= test session starts =============================\nplatform win32 -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0\nrootdir: C:\\MyDrive\\skilllens-ai\nplugins: anyio-4.13.0\ncollected 8 items\n\ntests\\test_api_cv.py ..                                                  [ 25%]\ntests\\test_api_health.py ..                                              [ 50%]\ntests\\test_cv_matcher.py ..                                              [ 75%]\ntests\\test_skill_extractor.py ..                                         [100%]\n\n============================== 8 passed in 4.65s ==============================\n",
+      "stderr_tail": ""
+    }
+  ]
+}

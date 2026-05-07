@@ -1,0 +1,48 @@
+{
+  "overall_passed": true,
+  "row_count": 350,
+  "checks": [
+    {
+      "check": "required_columns",
+      "passed": true,
+      "missing_columns": []
+    },
+    {
+      "check": "no_empty_required_values",
+      "passed": true,
+      "null_counts": {
+        "job_id": 0,
+        "title": 0,
+        "company": 0,
+        "location": 0,
+        "country": 0,
+        "category": 0,
+        "experience_level": 0,
+        "work_type": 0,
+        "salary_min": 0,
+        "salary_max": 0,
+        "description": 0,
+        "posted_date": 0
+      },
+      "failed_columns": []
+    },
+    {
+      "check": "unique_job_ids",
+      "passed": true,
+      "duplicate_count": 0
+    },
+    {
+      "check": "salary_validity",
+      "passed": true,
+      "invalid_min_count": 0,
+      "invalid_max_count": 0,
+      "min_greater_than_max_count": 0
+    },
+    {
+      "check": "extracted_skills",
+      "passed": true,
+      "empty_skill_rows": 0,
+      "total_rows": 350
+    }
+  ]
+}
