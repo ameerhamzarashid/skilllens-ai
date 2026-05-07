@@ -1,0 +1,17 @@
+{
+  "model_name": "RandomForestRegressor",
+  "target": "salary_midpoint",
+  "rows": 350,
+  "train_rows": 280,
+  "test_rows": 70,
+  "mae": 1685.93,
+  "r2_score": 0.9723,
+  "features": [
+    "category",
+    "experience_level",
+    "work_type",
+    "location",
+    "skill_count"
+  ],
+  "model_path": "C:\\MyDrive\\skilllens-ai\\ml\\models\\salary_model.joblib"
+}
