@@ -1,10 +1,8 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16
     container_name: skilllens_postgres
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: skilllens_db
       POSTGRES_USER: skilllens_user
@@ -13,30 +11,34 @@ services:
       - "5432:5432"
     volumes:
       - skilllens_postgres_data:/var/lib/postgresql/data
+    networks:
+      - skilllens_network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U skilllens_user -d skilllens_db"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
     container_name: skilllens_backend
-    restart: always
+    restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
     environment:
       APP_NAME: SkillLens AI
       APP_ENV: docker
-      DATABASE_URL: postgresql+psycopg2://skilllens_user:skilllens_password@postgres:5432/skilllens_db
+      DATABASE_URL: postgresql+psycopg2://skilllens_user:skilllens_password@skilllens_postgres:5432/skilllens_db
     ports:
       - "8000:8000"
     volumes:
       - ./data:/app/data
       - ./ml:/app/ml
+    networks:
+      - skilllens_network
     command: >
       sh -c "
       python -m data_platform.generate_sample_jobs &&
@@ -53,11 +55,17 @@ services:
       args:
         NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
     container_name: skilllens_frontend
-    restart: always
+    restart: unless-stopped
     depends_on:
       - backend
     ports:
       - "3000:3000"
+    networks:
+      - skilllens_network
 
 volumes:
   skilllens_postgres_data:
+
+networks:
+  skilllens_network:
+    driver: bridge
